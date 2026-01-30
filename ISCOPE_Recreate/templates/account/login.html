@@ -1,0 +1,36 @@
+{% extends 'account_template.html' %}
+
+
+{% load static %}
+
+
+{% block content %}
+<div class="w-full max-w-sm">
+  <!-- Logo -->
+  <div class="text-3xl mb-6">🔵</div>
+
+  <!-- Heading -->
+  <h2 class="text-2xl font-semibold mb-1">Sign in</h2>
+  <p class="text-sm text-gray-500 mb-6">Welcome back! Please enter your details.</p>
+
+  <!-- Form -->
+  <form method="POST" class="space-y-4">
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="Username"
+      class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500" />
+    <input type="password" name="password" placeholder="Password"
+      class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500" />
+    <button type="submit" class="w-full bg-[#9FB3DF] text-white py-2 rounded-md hover:bg-[#4E1F00] transition">Sign
+      in</button>
+  </form>
+
+
+
+  <!-- Sign up link -->
+  <p class="text-center text-sm mt-6">
+    Need an account?
+    <a href="{% url 'signup' %}" class="text-[#9FB3DF] font-medium hover:underline">Create an account</a>
+  </p>
+</div>
+
+{% endblock %}

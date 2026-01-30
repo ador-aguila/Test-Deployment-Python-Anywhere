@@ -1,0 +1,26 @@
+# Python
+*.pyc
+__pycache__/
+*.log
+.cache/
+.tox/
+.coverage
+htmlcov/
+pip-log.txt
+
+# Django
+db.sqlite3
+media/
+local_settings.py
+*.mo
+*.pot
+
+# Environments
+.venv/
+env/
+VENV/
+.env
+
+# IDEs and other
+.vscode/
+.idea/

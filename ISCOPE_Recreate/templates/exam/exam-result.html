@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>GM</h1>
+    {% for number, result in answers.items %}
+     <p>{{ number }} - {{ result}}</p>
+    {% endfor %}
+</body>
+</html>
+
+<script>
+    // Disable back and forward navigation
+    history.pushState(null, document.title, location.href);
+  
+    window.addEventListener('popstate', function (event) {
+      history.pushState(null, document.title, location.href);
+    });
+  </script>

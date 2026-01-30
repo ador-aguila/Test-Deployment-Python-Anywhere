@@ -1,0 +1,35 @@
+{% extends 'account_template.html' %}
+
+
+{% load static %}
+
+
+{% block content %}
+<div class="w-full max-w-sm">
+  <!-- Logo -->
+  <div class="text-3xl mb-6">🔵</div>
+
+  <!-- Heading -->
+  <h2 class="text-2xl font-semibold mb-1">Sign up</h2>
+  <p class="text-sm text-gray-500 mb-6">Welcome! Please enter the details needed.</p>
+
+  <!-- Form -->
+  <form method="POST" class="space-y-4">
+    {% csrf_token %}
+    {{form}}
+    <button type="submit" class="w-full bg-[#9FB3DF] text-white py-2 rounded-md hover:bg-[#4E1F00] transition">Create account</button>
+  </form>
+
+
+
+  <!-- Sign up link -->
+  <p class="text-center text-sm mt-6">
+    Already have an account?
+    <a href="{% url 'loginPage' %}" class="text-[#9FB3DF] font-medium hover:underline">Login</a>
+  </p>
+</div>
+
+{% endblock %}
+
+
+

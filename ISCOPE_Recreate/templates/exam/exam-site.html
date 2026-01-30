@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MCQ Test</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="//unpkg.com/alpinejs" defer></script>
+</head>
+<body class="bg-gradient-to-br from-[#9FB3DF] to-[#FFF1D5] min-h-screen flex items-center justify-center px-4">
+    
+  <div class="bg-white rounded-2xl shadow-xl w-full max-w-4xl p-6 md:p-10">
+    
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4" x-data="{
+        totalTime: 300, // 5 minutes
+        timeLeft: 300,
+        interval: null,
+        get percent() {
+            return ((this.totalTime - this.timeLeft) / this.totalTime) * 100;
+        },
+        formatTime() {
+            const min = Math.floor(this.timeLeft / 60);
+            const sec = String(this.timeLeft % 60).padStart(2, '0');
+            return `${min}:${sec}`;
+        },
+        startTimer() {
+        this.interval = setInterval(() => {
+            if (this.timeLeft > 0) {
+                this.timeLeft--;
+            } else {
+                clearInterval(this.interval);
+                document.getElementById('quizForm').submit();
+            }
+        }, 1000);
+        }
+    }"
+    x-init="startTimer()">
+    
+
+      <div>
+        <h2 class="text-lg font-semibold text-gray-800">iSCOPE Test</h2>
+        <p class="text-sm text-gray-500">Session 1</p>
+      </div>
+
+      <div class="flex-1 mx-4">
+        <div class="h-2 bg-gray-200 rounded-full w-full overflow-hidden">
+            
+          <div 
+            class="h-2 bg-[#4E1F00] transition-all duration-500"
+            :style="{ width: percent + '%' }"
+          ></div>
+        </div>
+      </div>
+    
+      <!-- Timer -->
+      <div class="flex items-center gap-2">
+        <svg class="w-5 h-5 text-[#4E1F00]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span class="text-sm text-gray-500" x-text="formatTime()"></span>
+      </div>
+    </div>
+
+ 
+
+        <div x-data="{ current: 0, answers: {}, total: {{ data|length }} }">
+            <div class="relative min-h-[400px]">
+            <form id="quizForm" method="POST" action="{% url 'exam-result' %}">
+                {% csrf_token %}
+                {% for question in data %}
+                <div x-show="current === {{ forloop.counter0 }}" class="absolute top-0 left-0 w-full transition-none">
+                    <div class="mb-6 space-y-2">
+                    <h3 class="text-sm text-gray-500">Question {{ forloop.counter }}</h3>
+                    <p class="text-base font-medium text-gray-800">
+                        {{ question.question }}
+                    </p>
+                    </div>  
+            
+                    <div class="space-y-4">
+                    {% for choice in question.choices %}
+                        <label class="block border rounded-xl shadow-sm p-4 cursor-pointer hover:bg-purple-50">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700 font-medium">{{ choice }}</span>
+                            <input type="radio"
+                                :name="'question_' + current"
+                                :value="'{{ choice }}'"
+                                x-model="answers[current]"
+                                class="form-radio text-purple-600 h-5 w-5" />
+                        </div>
+                        </label>
+                    {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+                <template x-for="(value, key) in answers" :key="key">
+                  <input type="hidden" :name="'question_' + key" :value="value">
+                </template>
+            </div>
+        
+            <!-- Footer Buttons -->
+            <div class="flex justify-between items-center mt-8">
+            <!-- Previous Button -->
+            <button type="button" class="flex items-center gap-2 bg-gray-100 text-gray-600 px-5 py-2 rounded-lg shadow-sm hover:bg-gray-200"
+                    @click="current--"
+                    x-bind:disabled="current === 0">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+                Previous
+            </button>
+        
+            <!-- Next / Finish Buttons -->
+            <div class="flex items-center">
+                <template x-if="current < total - 1">
+                <button type="button"  class="flex items-center gap-2 bg-[#9FB3DF] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#4E1F00]"
+                @click="if (answers[current]) current++">
+                    Next
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                    
+                </button>
+                </template>
+        
+                <template x-if="current === total - 1">
+                    <button type="submit" class="bg-[#4E1F00] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#9FB3DF]"
+                    @click="document.getElementById('quizForm').submit()" >
+                        Finish
+                    </button>
+                </template>
+            </div>
+
+            </form>
+            </div>
+        </div>
+
+  </div>
+</body>
+</html>
+<script>
+  // Disable back and forward navigation
+  history.pushState(null, document.title, location.href);
+
+  window.addEventListener('popstate', function (event) {
+    history.pushState(null, document.title, location.href);
+  });
+</script>

@@ -1,0 +1,65 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block content%}
+
+
+<section class="py-24 bg-white overflow-hidden"
+    style="background-image: url('flex-ui-assets/elements/pattern-white.svg'); background-position: center;">
+    <div class="container px-4 mx-auto">
+      <div class="flex flex-wrap -mx-4">
+        <div class="w-full md:w-1/2 px-4 mb-16 md:mb-0">
+          <div class="relative mx-auto md:ml-0 max-w-max">
+            <img class="absolute z-10 -right-8 -top-8 w-28 md:w-auto" src="flex-ui-assets/elements/circle3-yellow.svg"
+              alt="" />
+            <img class="absolute z-10 -left-10 -bottom-8 w-28 md:w-auto" src="flex-ui-assets/elements/dots3-blue.svg"
+              alt="" />
+            <img class="rounded-xl" src="{% static 'images/web_needed/exam-bg.jpg' %}" alt="" />
+          </div>
+        </div>
+        <div class="w-full md:w-1/2 px-4">
+
+          <h2 class="mb-12 text-4xl md:text-5xl leading-tight font-bold tracking-tighter flex justify-center">Exam Section</h2>
+          <div class="flex flex-wrap -mx-4 text-center md:text-left">
+            <div class="w-[50%] ">
+              
+                <h2 class="p-2 m-2">Name: </h2>
+                <hr>
+                <h2 class="p-2 m-2">Email: </h2>
+                <hr>
+                <h2 class="p-2 m-2 my-5">Take the exam </h2>
+                <hr>
+            </div>
+            <div class="w-[50%] ">
+                <h2 class="p-2 m-2">{{ user.student.name}}</h2>
+                <hr>
+                <h2 class="p-2 m-2">{{ user.student.email}}</h2>
+                <hr>
+                <a href="{% url 'exam-site' %}">
+                  <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold p-3 my-4 mx-4 rounded-xl  inline-flex items-center cursor-pointer">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                    </svg>
+                    
+                    <span>Click Here</span>
+                  </button>
+                </a>
+                <hr>
+                
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+
+{% endblock %}

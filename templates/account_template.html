@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>iSCOPE</title>
+</head>
+<body>
+    <div class="w-screen h-screen flex">
+        <div class="w-[50%] bg-[#9FB3DF]">
+            {% if user.is_authenticated %}
+                <div class="flex justify-center">
+                    {% block content_left %}
+
+                    {% endblock %}
+                </div>
+
+            {% else %}
+                <div class="h-[150px] w-[300px] p-5">
+                    <h2 class="mb-12 text-4xl md:text-5xl leading-tight font-bold tracking-tighter text-white"><a href="{% url 'home' %}">iSCOPE</a></h2>
+                </div>
+            {% endif %}
+
+        </div>
+
+        <div class="w-[50%] bg-[#FFF1D5] flex items-center justify-center">
+            {% block content %}
+
+            {% endblock %}
+            
+
+        </div>
+
+
+    </div>
+    
+</body>
+</html>

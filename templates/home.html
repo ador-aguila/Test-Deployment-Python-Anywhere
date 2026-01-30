@@ -1,0 +1,64 @@
+{% extends 'main.html' %}
+
+
+{% load static %}
+
+
+{% block content %}
+<section class="py-24 bg-white overflow-hidden"
+    style="background-image: url('flex-ui-assets/elements/pattern-white.svg'); background-position: center;">
+    <div class="container px-4 mx-auto">
+      <div class="flex flex-wrap -mx-4">
+        <div class="w-full md:w-1/2 px-4 mb-16 md:mb-0">
+          <div class="relative mx-auto md:ml-0 max-w-max">
+            <img class="absolute z-10 -right-8 -top-8 w-28 md:w-auto" src="flex-ui-assets/elements/circle3-yellow.svg"
+              alt="" />
+            <img class="absolute z-10 -left-10 -bottom-8 w-28 md:w-auto" src="flex-ui-assets/elements/dots3-blue.svg"
+              alt="" />
+            <img class="rounded-xl" src="{% static 'images/web_needed/main.jpg' %}" alt="" />
+          </div>
+        </div>
+        <div class="w-full md:w-1/2 px-4">
+
+          <h2 class="mb-12 text-4xl md:text-5xl leading-tight font-bold tracking-tighter">iSCOPE: A Web Based Adaptive
+            E-Learning System</h2>
+          <div class="flex flex-wrap -mx-4 text-center md:text-left">
+            <div class="w-full md:w-1/2 px-4 mb-8">
+              <div
+                class="inline-flex items-center justify-center mb-4 w-12 h-12 text-xl text-white font-semibold rounded-full bg-[#9FB3DF]">
+                1</div>
+              <h3 class="mb-2 text-xl font-bold">Start Learning</h3>
+              <p class="font-medium text-coolGray-500">Learning is not attained by chance, it must be sought for with
+                ardor and diligence. <br> ~Abigail Adams</p>
+            </div>
+            <div class="w-full md:w-1/2 px-4 mb-8">
+              <div
+                class="inline-flex items-center justify-center mb-4 w-12 h-12 text-xl text-white font-semibold rounded-full bg-[#9FB3DF]">
+                2</div>
+              <h3 class="mb-2 text-xl font-bold">Why should take iSCOPE?</h3>
+              <p class="font-medium text-coolGray-500">To determine what strands that fit for you. <br> To know what
+                career that awaits you. </p>
+            </div>
+            <div class="w-full md:w-1/2 px-4 mb-8">
+              <div
+                class="inline-flex items-center justify-center mb-4 w-12 h-12 text-xl text-white font-semibold rounded-full bg-[#9FB3DF]">
+                3</div>
+              <h3 class="mb-2 text-xl font-bold">What is iSCOPE?</h3>
+              <p class="font-medium text-coolGray-500">A platform that recommends the best career path for students.</p>
+            </div>
+            <div class="w-full md:w-1/2 px-4">
+              <div
+                class="inline-flex items-center justify-center mb-4 w-12 h-12 text-xl text-white font-semibold rounded-full bg-[#9FB3DF]">
+                4</div>
+              <h3 class="mb-2 text-xl font-bold">Build your skills</h3>
+              <p class="font-medium text-coolGray-500">iSCOPE covers a lot of topics and e-learning materials to start
+                up to build your skill foundations.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+{% endblock %}
