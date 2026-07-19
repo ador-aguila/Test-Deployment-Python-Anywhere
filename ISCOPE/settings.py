@@ -77,13 +77,13 @@ WSGI_APPLICATION = 'ISCOPE.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'iscopedb',
-        'USER': 'postgres',
-        'PASSWORD': 'Accenture@01',
-        'HOST': 'localhost',
-        'PORT': '5432',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "mydb",
+        "USER": "postgres",
+        "PASSWORD": "password",
+        "HOST": "db",      # NOT localhost
+        "PORT": "5432",
     }
 }
 

@@ -1,7 +1,18 @@
 services:
+  db:
+    image: postgres:16
+    container_name: postgres-db
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+
   app:
     build: .
     container_name: my-app
     ports:
       - "8000:8000"
-    restart: unless-stopped
+    depends_on:
+      - db
