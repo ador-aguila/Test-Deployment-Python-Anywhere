@@ -12,11 +12,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Show files
+        run: ls -la
+
       - name: Build
         run: docker compose build
 
-      - name: Deploy
+      - name: Start containers
         run: docker compose up -d
 
-      - name: Cleanup
+      - name: Remove dangling images
         run: docker image prune -f
